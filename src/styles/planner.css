@@ -1,0 +1,25 @@
+/* Estilos del planificador de redes. Solo se cargan en /planificador-redes. */
+@import 'tailwindcss';
+@import '@fontsource/poppins/400.css';
+@import '@fontsource/poppins/500.css';
+@import '@fontsource/poppins/600.css';
+@import '@fontsource/poppins/700.css';
+@source '../components/planner';
+
+@theme {
+  --font-sans: 'Poppins', system-ui, sans-serif;
+  /* Paleta KANSO: tinta cálida, arena para destacar y el marrón de marca */
+  --color-ink: #2a211b;
+  --color-sand: #e7d8c8;
+  --color-clay: #9f7a60;
+  --color-bone: #f2f3ed;
+  --tracking-tightest: -0.03em;
+}
+
+.planner-modal-scroll {
+  scrollbar-color: rgba(42, 33, 27, 0.55) rgba(42, 33, 27, 0.08);
+  scrollbar-width: thin;
+}
+.planner-modal-scroll::-webkit-scrollbar { width: 10px; }
+.planner-modal-scroll::-webkit-scrollbar-track { background: rgba(42, 33, 27, 0.08); border-radius: 999px; }
+.planner-modal-scroll::-webkit-scrollbar-thumb { background: rgba(42, 33, 27, 0.55); border: 2px solid white; border-radius: 999px; }

@@ -1,6 +1,26 @@
 {
   "version": "0.0.1",
   "configurations": [
-    { "name": "kanso-dev", "runtimeExecutable": "npm", "runtimeArgs": ["run", "dev", "--", "--port", "4321"], "port": 4321 }
+    {
+      "name": "kanso-dev",
+      "runtimeExecutable": "npm",
+      "runtimeArgs": [
+        "run",
+        "dev",
+        "--",
+        "--port",
+        "4321"
+      ],
+      "port": 4321
+    },
+    {
+      "name": "kanso-planner",
+      "runtimeExecutable": "npm",
+      "runtimeArgs": [
+        "run",
+        "planner:local"
+      ],
+      "port": 8788
+    }
   ]
 }

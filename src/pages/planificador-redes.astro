@@ -1,0 +1,19 @@
+---
+// Herramienta interna del equipo. La protege Cloudflare Access (ver
+// automation/google-sheet-sync/SETUP.md); queda fuera de buscadores y del sitemap.
+import '../styles/planner.css';
+import PlannerApp from '../components/planner/PlannerApp';
+---
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="robots" content="noindex, nofollow" />
+    <title>Planificador de redes | KANSO Studio</title>
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+  </head>
+  <body>
+    <PlannerApp client:only="react" />
+  </body>
+</html>

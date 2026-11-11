@@ -1,6 +1,6 @@
 # KANSO Studio · sitio web
 
-Sitio de [kanso.ar](https://www.kanso.ar) migrado desde Wix a **Astro** (sitio estático) y publicado gratis en **Cloudflare Pages**.
+Sitio de [kanso.ar](https://www.kanso.ar) migrado desde Wix a **Astro** (sitio estático) y publicado gratis en **Cloudflare Pages**, con el **planificador de redes** de KANSO en `/planificador-redes`.
 
 ## Estructura
 
@@ -13,8 +13,23 @@ src/
   styles/global.css   ← colores, tipografías, estilos comunes
   assets/img/         ← fotos (Astro las optimiza a WebP al compilar)
   assets/logos/       ← logo, isotipo y logos de clientes (SVG)
+  components/planner/ ← panel del planificador de redes (React + Tailwind)
 public/               ← favicon, robots.txt, _headers y _redirects de Cloudflare
+functions/            ← Cloudflare Pages Functions: planificador, sincronización y clics de WhatsApp
+cloudflare/migrations ← esquema de la base D1
+automation/           ← Apps Script de la grilla, guía de setup y de tandas semanales
+brand/                ← marca, voz, ejes editoriales, templates de Canva y logos
+inputs/ grid/ logs/   ← material, tandas y registros de redes
 ```
+
+## Planificador de redes
+
+Mismo sistema que usa DOOH, aplicado a KANSO: la grilla de Google Sheets es la fuente de verdad; Apps Script sincroniza cada pieza (copy + gráficas de Drive) a Cloudflare (D1 + R2) y el panel `/planificador-redes`, protegido con Cloudflare Access, muestra el feed y las stories como se verán en Instagram. Desde ahí se aprueba, se piden cambios y se ordena la salida; todo se escribe en la grilla. La pestaña **Consultas** cuenta los clics en WhatsApp del sitio por canal de origen (UTM), sin datos personales.
+
+- Setup (una vez): [`automation/google-sheet-sync/SETUP.md`](automation/google-sheet-sync/SETUP.md)
+- Armar una tanda: [`automation/TANDA_SEMANAL.md`](automation/TANDA_SEMANAL.md)
+- Marca y voz: [`brand/skill.md`](brand/skill.md)
+- Probar en local con funciones: `npm run planner:local` (ver SETUP).
 
 ## Trabajar en local
 

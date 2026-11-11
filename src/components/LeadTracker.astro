@@ -1,0 +1,47 @@
+<script>
+  // Origen de la visita para saber qué canal trae consultas por WhatsApp.
+  // Se guarda solo en sessionStorage (se borra al cerrar la pestaña), sin cookies
+  // ni datos personales: parámetros utm_* del link, dominio de la página anterior
+  // y página de entrada. Cada clic en un link de WhatsApp se registra en /api/lead
+  // y se ve en la pestaña “Consultas” del planificador.
+  type Origin = { source: string; medium: string; campaign: string; referrer: string; landing: string };
+  const KEY = 'kanso-origin';
+
+  function captureOrigin(): Origin {
+    try {
+      const raw = sessionStorage.getItem(KEY);
+      if (raw) return JSON.parse(raw) as Origin;
+    } catch {}
+    const params = new URLSearchParams(window.location.search);
+    let referrer = '';
+    try {
+      const host = document.referrer ? new URL(document.referrer).hostname : '';
+      referrer = host && host !== window.location.hostname ? host : '';
+    } catch {}
+    const origin: Origin = {
+      source: params.get('utm_source') ?? '',
+      medium: params.get('utm_medium') ?? '',
+      campaign: params.get('utm_campaign') ?? '',
+      referrer,
+      landing: window.location.pathname,
+    };
+    try { sessionStorage.setItem(KEY, JSON.stringify(origin)); } catch {}
+    return origin;
+  }
+
+  const isWhatsApp = (href: string) => /(^|\/\/)(wa\.me|api\.whatsapp\.com|web\.whatsapp\.com)\//.test(href);
+
+  captureOrigin();
+  document.addEventListener('click', (event) => {
+    const link = (event.target as Element | null)?.closest?.('a[href]');
+    if (!link || !isWhatsApp(link.getAttribute('href') ?? '')) return;
+    const body = JSON.stringify({
+      kind: 'whatsapp',
+      ...Object.fromEntries(Object.entries(captureOrigin()).map(([key, value]) => [`origen_${key}`, value])),
+      origen_page: window.location.pathname,
+    });
+    try {
+      navigator.sendBeacon('/api/lead', new Blob([body], { type: 'application/json' }));
+    } catch {}
+  }, true);
+</script>

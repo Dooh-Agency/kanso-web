@@ -1,4 +1,6 @@
 User-agent: *
 Allow: /
+Disallow: /planificador-redes
+Disallow: /api/
 
 Sitemap: https://www.kanso.ar/sitemap-index.xml

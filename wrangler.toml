@@ -1,4 +1,0 @@
-# Configuración de Cloudflare Pages
-name = "kanso"
-pages_build_output_dir = "./dist"
-compatibility_date = "2026-11-01"
