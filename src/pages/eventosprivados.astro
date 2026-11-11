@@ -1,0 +1,66 @@
+---
+import { Image } from 'astro:assets';
+import Base from '../layouts/Base.astro';
+import hero from '../assets/img/eventos-hero.jpg';
+const reservar = 'https://wa.me/5491121788786?text=' + encodeURIComponent('¡Hola KANSO! Quiero consultar por un taller privado de cerámica.');
+const planes = ['Cumpleaños', 'Despedidas de soltera', 'Regalos experienciales', 'Encuentros entre amigos', 'Actividades de team building', 'Eventos corporativos'];
+---
+<Base title="Eventos privados" description="Talleres privados de cerámica para cumpleaños, despedidas, team building y eventos corporativos. Experiencias creativas a medida.">
+  <header class="page-title">
+    <p class="label">KANSO Studio</p>
+    <h1>Eventos privados</h1>
+  </header>
+
+  <div class="banda">
+    <Image src={hero} alt="Taller privado de cerámica KANSO" widths={[720]} sizes="100vw" />
+  </div>
+
+  <section class="section container grid-2">
+    <div>
+      <p class="label">Experiencias creativas</p>
+      <h2 class="h-big">Una pausa creativa para celebrar lo que importa</h2>
+      <p class="bajada">Viví una experiencia única con tus amigos, familia o equipo de trabajo</p>
+      <p>Si estás buscando una actividad original, divertida o una propuesta diferente al clásico evento corporativo, nuestros talleres privados de cerámica son el plan ideal. Diseñamos experiencias a medida para que puedan crear, compartir y disfrutar del proceso en un ambiente relajado y creativo.</p>
+      <p>Regalá una experiencia distinta, un momento para crear, reír, brindar y llevarse algo hecho con las propias manos.</p>
+      <p>Nuestros talleres privados de cerámica están pensados para compartir, desconectar y vivir algo auténtico.</p>
+      <a class="btn" href={reservar} target="_blank" rel="noopener">¡Contactanos!</a>
+
+      <div class="condiciones">
+        <h3>Condiciones del servicio</h3>
+        <p>Grupos cerrados de mínimo 5 personas. En caso de no alcanzar el mínimo, se deberá abonar el equivalente a 5 cupos.</p>
+        <p>El presupuesto será ajustado según cantidad de participantes y ubicación del domicilio. No se requieren conocimientos previos.</p>
+      </div>
+    </div>
+
+    <div class="detalle">
+      <h3>¿Cómo es la propuesta del taller?</h3>
+      <p>Durante el taller de 2 o 3 horas, cada participante realizará una pieza de cerámica y la decorará utilizando técnicas adaptadas al proceso.</p>
+      <p>Una vez finalizado el encuentro, las piezas deberán secarse y pasar por el proceso de horneado y esmaltado, del cual nos ocupamos nosotros.</p>
+      <p>El plazo estimado de entrega es de aproximadamente 3 semanas, sujeto al volumen de producción del taller.</p>
+
+      <h3>Temática personalizada</h3>
+      <p>Ofrecemos la posibilidad de elegir la temática o el tipo de pieza a realizar, adaptando el taller a sus intereses y ocasión.</p>
+      <p>Proponemos un encuentro totalmente personalizado, donde cada participante podrá crear con sus manos en un espacio cuidado, guiado y distendido.</p>
+      <p>Podemos acompañar la actividad con un vinito, cerveza y algo para comer (no incluido en el precio) o incluir algo de picoteo y los ayudamos con la presentación.</p>
+
+      <h3>Es el plan perfecto para:</h3>
+      <p>Amigos, familia o equipos de trabajo, para celebrar cumpleaños, hacer regalos, despedidas de soltera o teambuilding con tu empresa.</p>
+      <ul>{planes.map((p) => <li>{p}</li>)}</ul>
+      <p>Y si se te ocurre una excusa para celebrar, ¡lo hacemos posible!</p>
+      <p><strong>Reservá tu fecha y armemos una experiencia a medida, una experiencia que no se queda en la foto. Se la llevan a casa.</strong></p>
+      <a class="btn" href={reservar} target="_blank" rel="noopener">¡Reservá tu fecha!</a>
+    </div>
+  </section>
+</Base>
+
+<style>
+  .banda { margin: 0 var(--pad); height: clamp(200px, 30vw, 340px); overflow: hidden; }
+  .banda img { width: 100%; height: 100%; object-fit: cover; object-position: center 40%; }
+  .h-big { font-size: clamp(26px, 3.2vw, 36px); }
+  .bajada { font-weight: 500; }
+  .grid-2 { font-size: 13px; }
+  .condiciones { margin-top: 48px; }
+  h3 { font-size: 14px; color: var(--c-text); margin-top: 1.8em; }
+  .detalle h3:first-child { margin-top: 0; }
+  .detalle ul { padding-left: 1.2em; }
+</style>

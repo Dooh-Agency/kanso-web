@@ -1,0 +1,78 @@
+@import '@fontsource/poppins/400.css';
+@import '@fontsource/poppins/500.css';
+@import '@fontsource/montserrat/400.css';
+@import '@fontsource/bodoni-moda/700-italic.css';
+
+:root {
+  --c-accent: #9f7a60;
+  --c-accent-dark: #6b4a35;
+  --c-text: #111;
+  --c-muted: #6e6e6e;
+  --c-beige: #f2f3ed;
+  --c-line: #e3e1da;
+  --f-sans: 'Poppins', system-ui, sans-serif;
+  --f-label: 'Montserrat', system-ui, sans-serif;
+  --f-serif: 'Bodoni Moda', Georgia, serif;
+  --max: 1160px;
+  --pad: clamp(20px, 5vw, 60px);
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  margin: 0;
+  font-family: var(--f-sans);
+  color: var(--c-text);
+  background: #fff;
+  font-size: 15px;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+img { max-width: 100%; height: auto; display: block; }
+a { color: inherit; }
+h1, h2, h3 { font-weight: 500; line-height: 1.25; margin: 0 0 .6em; }
+p { margin: 0 0 1em; }
+
+.container { max-width: var(--max); margin: 0 auto; padding-inline: var(--pad); }
+.section { padding-block: clamp(56px, 9vw, 110px); }
+.bg-beige { background: var(--c-beige); }
+
+.label {
+  font-family: var(--f-label);
+  font-size: 11px;
+  letter-spacing: .22em;
+  text-transform: uppercase;
+  color: var(--c-muted);
+  margin-bottom: 1rem;
+}
+.link-accent { color: var(--c-accent); text-decoration: none; font-size: 13px; }
+.link-accent:hover { text-decoration: underline; }
+
+.btn {
+  display: inline-block;
+  font-family: var(--f-label);
+  font-size: 11px;
+  letter-spacing: .18em;
+  text-transform: uppercase;
+  text-decoration: none;
+  padding: 14px 32px;
+  border: 1px solid currentColor;
+  transition: background .2s, color .2s;
+}
+.btn:hover { background: var(--c-text); color: #fff; }
+.btn--light { color: #fff; }
+.btn--light:hover { background: #fff; color: var(--c-text); }
+
+.page-title {
+  background: var(--c-beige);
+  text-align: center;
+  padding: 56px 20px;
+  margin: 0 var(--pad);
+}
+.page-title h1 { font-size: 18px; letter-spacing: .12em; text-transform: uppercase; margin: 0; }
+.page-title .label { margin-bottom: .4rem; }
+
+.grid-2 { display: grid; gap: clamp(32px, 6vw, 80px); grid-template-columns: 1fr 1fr; align-items: start; }
+@media (max-width: 800px) { .grid-2 { grid-template-columns: 1fr; } }
+
+.sr-only { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); }

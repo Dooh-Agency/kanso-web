@@ -1,0 +1,18 @@
+---
+import WhatsApp from '../assets/logos/whatsapp.svg';
+import { site } from '../data/site';
+---
+<a class="wa" href={site.whatsappFlotante} target="_blank" rel="noopener" aria-label="Escribinos por WhatsApp">
+  <WhatsApp width="26" height="26" aria-hidden="true" />
+</a>
+
+<style>
+  .wa {
+    position: fixed; right: 18px; bottom: 22px; z-index: 60;
+    width: 52px; height: 52px; border-radius: 50%; background: #fff; color: #25d366;
+    display: grid; place-items: center; box-shadow: 0 4px 18px rgba(0,0,0,.15);
+    transition: transform .2s;
+  }
+  .wa:hover { transform: scale(1.06); }
+  .wa :global(svg) { fill: #25d366; }
+</style>

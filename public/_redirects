@@ -1,0 +1,4 @@
+# Redirecciones de URLs viejas de Wix (agregar acá si aparecen otras)
+/home              /                 301
+/contacto          https://wa.me/5491121788786  302
+/tienda            https://kanso2.mitiendanube.com/  302

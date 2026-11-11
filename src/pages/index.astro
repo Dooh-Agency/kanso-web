@@ -1,0 +1,100 @@
+---
+import { Image } from 'astro:assets';
+import Base from '../layouts/Base.astro';
+import { site } from '../data/site';
+import hero from '../assets/img/home-hero.jpg';
+import g1 from '../assets/img/home-galeria-1.jpg';
+import g2 from '../assets/img/home-galeria-2.jpg';
+import g3 from '../assets/img/home-galeria-3.jpg';
+import g4 from '../assets/img/home-galeria-4.jpg';
+import Jyglo from '../assets/logos/cliente-jyglo.svg';
+import Mxd from '../assets/logos/cliente-mxd.svg';
+import G from '../assets/logos/cliente-g.svg';
+import Merope from '../assets/logos/cliente-merope.svg';
+import S from '../assets/logos/cliente-s.svg';
+
+const galeria = [
+  { src: g1, cliente: '@jyglobar', url: 'https://www.instagram.com/jyglobar/', alt: 'Postre servido en plato de cerámica KANSO' },
+  { src: g2, cliente: '@merope.ba', url: 'https://www.instagram.com/merope.ba/', alt: 'Plato de cerámica KANSO con comida en Merope' },
+  { src: g3, cliente: '@goatxcoffee', url: 'https://www.instagram.com/goatx.coffee/', alt: 'Brunch y café en vajilla KANSO' },
+  { src: g4, cliente: '@jyglobar', url: 'https://www.instagram.com/jyglobar/', alt: 'Platos de cerámica KANSO apilados en barra' },
+];
+const clientes = [Jyglo, Mxd, G, Merope, S];
+---
+<Base>
+  <section class="hero">
+    <Image src={hero} alt="Jarra de cerámica artesanal KANSO iluminada por la luz de una ventana" widths={[800, 1400, 2200]} sizes="100vw" loading="eager" fetchpriority="high" class="hero__img" />
+    <div class="hero__content">
+      <p class="label hero__label">KANSO Studio</p>
+      <h1>Cerámica para espacios y momentos <em>extraordinarios</em></h1>
+      <p>Hacemos objetos hechos 100% a mano con materiales nobles y atención al detalle.<br />
+      Creamos experiencias únicas y personalizadas, haciendo tu idea realidad.</p>
+      <a class="btn btn--light" href={site.whatsappAR} target="_blank" rel="noopener">Hablemos de tu idea</a>
+    </div>
+  </section>
+
+  <section class="section container grid-2">
+    <h2 class="h-intro">El arte presente en todos los aspectos de tu negocio</h2>
+    <div>
+      <div class="servicio">
+        <p class="label">Diseño de vajilla para gastronomía</p>
+        <p>Trabajamos la cerámica enfocándonos en el diseño y su propósito funcional, con el fin de optimizar su uso y enriquecer la imagen estética de cualquier negocio gastronómico.</p>
+        <a class="link-accent" href={site.whatsappAR} target="_blank" rel="noopener">¡Hablemos!</a>
+      </div>
+      <div class="servicio">
+        <p class="label">Diseño de producto</p>
+        <p>Nos especializamos en el diseño de objetos a medida para desarrollar productos exclusivos.</p>
+        <a class="link-accent" href={site.whatsappAR} target="_blank" rel="noopener">¡Hablemos!</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="section bg-beige destacado">
+    <div class="container">
+      <p class="label">Cerámica personalizada</p>
+      <p class="destacado__txt">Creamos piezas 100% personalizadas para quienes apuestan por la excelencia, el diseño, la calidad y crear experiencias únicas en todos los sentidos.</p>
+    </div>
+  </section>
+
+  <section class="section container grid-2">
+    <div>
+      <h2 class="h-intro">Interpretamos tu esencia en cada pieza</h2>
+      <p>Cada objeto surge del diálogo entre tus ideas y nuestro oficio. Escuchamos la historia detrás de cada proyecto para transformarla en forma, textura y color.</p>
+      <p>Así, cada pieza conserva la calidez de lo hecho a mano y refleja la identidad de quien la habita o la presenta.</p>
+      <p>No fabricamos objetos: diseñamos presencia, coherencia y emoción en lo cotidiano.</p>
+      <a class="link-accent" href={site.whatsappAR} target="_blank" rel="noopener">Hagamos tu sueño realidad</a>
+    </div>
+    <div class="galeria">
+      {galeria.map((g) => (
+        <a href={g.url} target="_blank" rel="noopener" class="galeria__item">
+          <Image src={g.src} alt={g.alt} width={524} height={680} widths={[262, 524]} sizes="(max-width: 800px) 45vw, 260px" />
+          <span>{g.cliente}</span>
+        </a>
+      ))}
+    </div>
+  </section>
+
+  <section class="clientes container" aria-label="Clientes">
+    {clientes.map((Logo) => <Logo width="67" height="61" aria-hidden="true" />)}
+  </section>
+</Base>
+
+<style>
+  .hero { position: relative; margin: 0 var(--pad); min-height: min(78vh, 720px); display: grid; place-items: center; overflow: hidden; color: #fff; }
+  .hero__img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: 62% 48%; filter: brightness(.62); }
+  .hero__content { position: relative; text-align: center; padding: 60px 24px; max-width: 760px; }
+  .hero__label { color: rgba(255,255,255,.85); }
+  .hero h1 { font-size: clamp(28px, 4.2vw, 48px); font-weight: 400; margin-bottom: .5em; }
+  .hero h1 em { display: block; font-family: var(--f-serif); font-style: italic; font-weight: 700; font-size: 1.45em; line-height: 1.05; }
+  .hero p { font-size: 13px; margin-bottom: 2.4em; }
+  .h-intro { font-size: 22px; max-width: 22ch; }
+  .servicio { margin-bottom: 2.4rem; font-size: 13px; }
+  .destacado { text-align: center; }
+  .destacado__txt { font-size: clamp(17px, 2vw, 22px); font-weight: 500; max-width: 34ch; margin: 0 auto; }
+  .galeria { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  .galeria__item { position: relative; display: block; overflow: hidden; }
+  .galeria__item img { width: 100%; aspect-ratio: 524 / 680; object-fit: cover; transition: transform .5s; }
+  .galeria__item:hover img { transform: scale(1.04); }
+  .galeria__item span { position: absolute; right: 10px; bottom: 10px; background: rgba(0,0,0,.45); color: #fff; font-size: 10px; padding: 6px 12px; }
+  .clientes { display: flex; justify-content: space-around; align-items: center; flex-wrap: wrap; gap: 32px; padding-block: 48px 72px; }
+</style>

@@ -1,0 +1,91 @@
+---
+import { Image } from 'astro:assets';
+import Base from '../layouts/Base.astro';
+import { site } from '../data/site';
+import hero from '../assets/img/servicios-hero.jpg';
+import diseno from '../assets/img/servicios-diseno.jpg';
+import negocio from '../assets/img/servicios-negocio.jpg';
+import produccion from '../assets/img/servicios-produccion.png';
+import clases from '../assets/img/servicios-clases.jpg';
+import og from '../assets/img/og-servicios.jpg';
+
+const servicios = [
+  {
+    img: diseno, alt: 'Taza de cerámica KANSO con latte art',
+    titulo: 'Diseñamos y desarrollamos tu proyecto a medida',
+    bajada: 'Ten tu producto propio y eleva el nivel de tu marca',
+    texto: 'Brindamos un servicio de diseño personalizado para dar vida a las ideas, a través de un proceso de diseño creativo altamente colaborativo.',
+  },
+  {
+    img: negocio, alt: 'Piezas de cerámica KANSO en un espacio gastronómico',
+    titulo: 'Suma nuestros productos a tu negocio',
+    bajada: 'Más valor a tus servicios',
+    texto: 'Trabajamos en colaboración con profesionales de diseño, arquitectura y decoración, para mejorar su oferta de servicios dándoles la oportunidad de incorporar piezas únicas y sumar un valor diferencial.',
+  },
+  {
+    img: produccion, alt: 'Serie de piezas de cerámica KANSO producidas por pedido',
+    titulo: 'Desarrollo y producción por pedido',
+    bajada: 'Desarrolla tu producto propio y eleva el nivel de tu marca',
+    texto: 'Brindamos asesoramiento y asistencia personalizada para cada cliente, ofreciendo productos que se adapten a cada necesidad.',
+  },
+  {
+    img: clases, alt: 'Taller de cerámica con piezas en proceso',
+    titulo: 'Clases y talleres personalizados',
+    bajada: 'Una experiencia única en compañía de tus amigos',
+    texto: 'Una actividad divertida y diferente mediante talleres privados. Podrás disfrutar de una experiencia única en compañía de tus amigos, familiares o compañeros de trabajo. Ofrecemos la posibilidad de elegir la temática o las piezas a realizar, adaptando el taller a vuestros gustos y necesidades.',
+    link: '/eventosprivados',
+  },
+];
+---
+<Base title="Servicios" description="Diseño a medida, vajilla para gastronomía, producción por pedido y talleres de cerámica personalizados." ogImage={og}>
+  <header class="page-title">
+    <h1>Servicios</h1>
+    <p class="label" style="margin:.5rem 0 0">Agregamos valor a proyectos, negocios y marcas</p>
+  </header>
+
+  <section class="container destacado-wrap">
+    <Image src={hero} alt="Jarro de cerámica KANSO servido con pan" widths={[700, 1100]} sizes="(max-width: 800px) 100vw, 760px" class="destacado-img" />
+    <div class="destacado-card">
+      <p class="label">Diseño a medida</p>
+      <h2>Tu idea hecha realidad</h2>
+      <p>Agregamos valor a proyectos, negocios y marcas</p>
+      <a href={site.whatsappAR} target="_blank" rel="noopener">Consultanos, ¡podemos asesorarte!</a>
+    </div>
+  </section>
+
+  <section class="section container">
+    {servicios.map((s) => (
+      <article class="servicio">
+        <Image src={s.img} alt={s.alt} width={360} height={260} widths={[360, 720]} sizes="(max-width: 800px) 100vw, 220px" />
+        <h2>{s.titulo}</h2>
+        <div>
+          <p class="servicio__bajada">{s.bajada}</p>
+          <p>{s.texto}</p>
+          {s.link && <a class="link-accent" href={s.link}>Ver eventos privados →</a>}
+        </div>
+      </article>
+    ))}
+  </section>
+</Base>
+
+<style>
+  .destacado-wrap { position: relative; margin-top: 48px; }
+  .destacado-img { width: min(760px, 100%); aspect-ratio: 760 / 520; object-fit: cover; }
+  .destacado-card {
+    background: #6b4a35; color: #fff; padding: 40px; max-width: 400px;
+    position: absolute; right: var(--pad); top: 50%; transform: translateY(-20%);
+  }
+  .destacado-card .label { color: rgba(255,255,255,.75); }
+  .destacado-card h2 { font-size: 20px; }
+  .destacado-card p { font-size: 13px; }
+  .destacado-card a { color: #fff; font-size: 12px; }
+  .servicio { display: grid; grid-template-columns: 220px 1fr 1.4fr; gap: 40px; align-items: start; padding-block: 40px; border-top: 1px solid var(--c-line); font-size: 13px; }
+  .servicio:last-child { border-bottom: 1px solid var(--c-line); }
+  .servicio img { width: 100%; aspect-ratio: 220 / 160; object-fit: cover; }
+  .servicio h2 { font-size: 20px; max-width: 14ch; }
+  .servicio__bajada { font-weight: 500; }
+  @media (max-width: 800px) {
+    .destacado-card { position: static; transform: none; max-width: none; }
+    .servicio { grid-template-columns: 1fr; gap: 16px; }
+  }
+</style>
