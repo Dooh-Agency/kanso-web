@@ -40,7 +40,7 @@ Una sola vez, en la cuenta de Cloudflare de KANSO (todo en plan gratuito):
 1. **Base D1:** Workers & Pages → D1 → Create → nombre `kanso-planner`. En la consola de la base, ejecutar en orden los archivos de [`cloudflare/migrations/`](../../cloudflare/migrations/).
 2. **Bucket R2:** R2 → Create bucket → `kanso-planner-assets` (privado). Opcional: alertas de uso al 50 % del plan gratuito.
 3. **Conectarlos al proyecto de Pages** `kanso-web`: Settings → Bindings → D1 `PLANNER_DB` = `kanso-planner` y R2 `PLANNER_BUCKET` = `kanso-planner-assets` (Production y Preview).
-4. **Cloudflare Access:** Zero Trust (plan Free) → Access → Applications → Add → Self-hosted, nombre “Planificador de redes”, con las rutas `kanso-web.pages.dev/planificador-redes` y `kanso-web.pages.dev/api/planner`. Política “Equipo KANSO”: Allow, Emails = las personas que aprueban. Método de ingreso: código por mail (One-time PIN). Al mudar el dominio, sumar `www.kanso.ar/planificador-redes` y `www.kanso.ar/api/planner`.
+4. **Cloudflare Access:** Zero Trust (plan Free) → Access → Applications → Add → Self-hosted, nombre “Planificador de redes”, con las rutas `kanso-web-uze.pages.dev/planificador-redes` y `kanso-web-uze.pages.dev/api/planner`. Política “Equipo KANSO”: Allow, Emails = las personas que aprueban. Método de ingreso: código por mail (One-time PIN). Al mudar el dominio, sumar `www.kanso.ar/planificador-redes` y `www.kanso.ar/api/planner`.
 
 En **Workers & Pages → kanso-web → Settings → Variables and secrets** (Production) cargar:
 
@@ -70,7 +70,7 @@ La función `/api/planner/instagram` (protegida por Access) guarda la respuesta 
 2. Reemplazar el contenido por [`Code.gs`](Code.gs), guardar el proyecto y recargar la planilla.
 3. En **Project Settings → Script properties**, agregar:
 
-   - `PLANNER_API_URL` → `https://kanso-web.pages.dev` (o `https://www.kanso.ar` cuando se mude el dominio).
+   - `PLANNER_API_URL` → `https://kanso-web-uze.pages.dev` (o `https://www.kanso.ar` cuando se mude el dominio).
    - `PLANNER_SYNC_SECRET` → la misma clave cargada en Cloudflare. Nunca copiarla en el sitio, en `.env.local`, en Git ni en un mensaje de chat.
 
    Si quedaron `SUPABASE_URL` y `SUPABASE_SERVICE_ROLE_KEY` de la versión anterior, borrarlas.
