@@ -1,8 +1,9 @@
 ---
 import { Image } from 'astro:assets';
+import { site } from '../data/site';
 import Base from '../layouts/Base.astro';
 import hero from '../assets/img/eventos-hero.jpg';
-const reservar = 'https://wa.me/5491121788786?text=' + encodeURIComponent('¡Hola KANSO! Quiero consultar por un taller privado de cerámica.');
+const reservar = site.whatsappAR + '?text=' + encodeURIComponent('¡Hola KANSO! Quiero consultar por un taller privado de cerámica.');
 const planes = ['Cumpleaños', 'Despedidas de soltera', 'Regalos experienciales', 'Encuentros entre amigos', 'Actividades de team building', 'Eventos corporativos'];
 ---
 <Base title="Eventos privados" description="Talleres privados de cerámica para cumpleaños, despedidas, team building y eventos corporativos. Experiencias creativas a medida.">

@@ -56,5 +56,4 @@ npm run deploy
 
 ## Pendientes / a revisar
 
-- En Wix el teléfono mostrado (+54 9 11 5468 1888) linkea a otro número de WhatsApp (11 2178 8786). Se mantuvo igual; confirmar el correcto en `src/data/site.ts`.
 - Google Search Console: verificar el dominio y enviar `https://www.kanso.ar/sitemap-index.xml` después del cambio.

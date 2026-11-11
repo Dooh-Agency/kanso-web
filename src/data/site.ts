@@ -6,10 +6,7 @@ export const site = {
   email: 'hola@kanso.ar',
   instagram: 'https://www.instagram.com/kanso.ar/',
   tienda: 'https://kanso2.mitiendanube.com/',
-  // Nota: en Wix el número mostrado (+54 9 11 5468 1888) y el link (11 2178 8786) no coinciden.
-  // Se respetó lo que había publicado; revisar cuál es el correcto.
-  whatsappAR: 'https://wa.me/5491121788786',
-  whatsappFlotante: 'https://wa.me/5491154681888',
+  whatsappAR: 'https://wa.me/5491154681888',
   whatsappES: 'https://wa.me/34681816030',
   telAR: '+54 9 11 5468 1888',
   telES: '+34 681 816 030',
