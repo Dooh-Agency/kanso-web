@@ -7,7 +7,7 @@ Sitio de [kanso.ar](https://www.kanso.ar) migrado desde Wix a **Astro** (sitio e
 ```
 src/
   data/site.ts        ← teléfonos, mail, links (editar acá)
-  pages/              ← una página por archivo: index, servicios, bio, eventosprivados
+  pages/              ← una página por archivo: index, servicios, bio
   components/         ← Header, Footer, botón de WhatsApp
   layouts/Base.astro  ← <head>, SEO, Open Graph
   styles/global.css   ← colores, tipografías, estilos comunes

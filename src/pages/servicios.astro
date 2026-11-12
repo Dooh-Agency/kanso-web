@@ -6,7 +6,6 @@ import hero from '../assets/img/servicios-hero.jpg';
 import diseno from '../assets/img/servicios-diseno.jpg';
 import negocio from '../assets/img/servicios-negocio.jpg';
 import produccion from '../assets/img/servicios-produccion.png';
-import clases from '../assets/img/servicios-clases.jpg';
 import og from '../assets/img/og-servicios.jpg';
 
 const servicios = [
@@ -28,16 +27,9 @@ const servicios = [
     bajada: 'Desarrolla tu producto propio y eleva el nivel de tu marca',
     texto: 'Brindamos asesoramiento y asistencia personalizada para cada cliente, ofreciendo productos que se adapten a cada necesidad.',
   },
-  {
-    img: clases, alt: 'Taller de cerámica con piezas en proceso',
-    titulo: 'Clases y talleres personalizados',
-    bajada: 'Una experiencia única en compañía de tus amigos',
-    texto: 'Una actividad divertida y diferente mediante talleres privados. Podrás disfrutar de una experiencia única en compañía de tus amigos, familiares o compañeros de trabajo. Ofrecemos la posibilidad de elegir la temática o las piezas a realizar, adaptando el taller a vuestros gustos y necesidades.',
-    link: '/eventosprivados',
-  },
 ];
 ---
-<Base title="Servicios" description="Diseño a medida, vajilla para gastronomía, producción por pedido y talleres de cerámica personalizados." ogImage={og}>
+<Base title="Servicios" description="Diseño a medida, vajilla para gastronomía y producción de cerámica por pedido para proyectos, negocios y marcas." ogImage={og}>
   <header class="page-title">
     <h1>Servicios</h1>
     <p class="label" style="margin:.5rem 0 0">Agregamos valor a proyectos, negocios y marcas</p>
@@ -61,7 +53,6 @@ const servicios = [
         <div>
           <p class="servicio__bajada">{s.bajada}</p>
           <p>{s.texto}</p>
-          {s.link && <a class="link-accent" href={s.link}>Ver eventos privados →</a>}
         </div>
       </article>
     ))}

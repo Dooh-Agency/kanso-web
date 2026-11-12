@@ -2,7 +2,7 @@
 export const site = {
   name: 'KANSO Studio',
   description:
-    'Cerámica hecha 100% a mano para espacios y momentos extraordinarios. Vajilla para gastronomía, diseño de producto, cerámica personalizada y talleres privados en Buenos Aires y Málaga.',
+    'Cerámica hecha 100% a mano para espacios y momentos extraordinarios. Vajilla para gastronomía, diseño de producto y cerámica personalizada, desde Buenos Aires y Málaga.',
   email: 'hola@kanso.ar',
   instagram: 'https://www.instagram.com/kanso.ar/',
   tienda: 'https://kanso2.mitiendanube.com/',
@@ -16,7 +16,6 @@ export const nav = [
   { label: 'Inicio', href: '/' },
   { label: 'Servicios', href: '/servicios' },
   { label: 'Bio', href: '/bio' },
-  { label: 'Eventos privados', href: '/eventosprivados' },
   { label: 'Contacto', href: site.whatsappAR, external: true },
   { label: 'Tienda', href: site.tienda, external: true },
 ];

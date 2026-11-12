@@ -7,7 +7,7 @@
 | Campo | Definición |
 | --- | --- |
 | Marca | KANSO Studio |
-| Rubro | Cerámica hecha 100 % a mano: vajilla para gastronomía, diseño de producto a medida, cerámica personalizada, producción por pedido y talleres privados. |
+| Rubro | Cerámica hecha 100 % a mano: vajilla para gastronomía, diseño de producto a medida, cerámica personalizada y producción por pedido. Por ahora KANSO no ofrece clases, talleres ni eventos privados: no comunicarlos. |
 | Equipo | Florencia Álvarez (diseñadora gráfica, mentora del proyecto) y María Fernanda Barreiro Prieto (diseñadora gráfica, socia). |
 | Ubicación | Buenos Aires (Argentina) y Málaga (España). |
 | Plataformas | Instagram [`@kanso.ar`](https://www.instagram.com/kanso.ar/). LinkedIn no está activo. |
@@ -22,7 +22,7 @@ Tomada de los textos del sitio:
 - **Cálida y cercana:** habla de “tu idea”, “tu negocio”, “tu esencia”. Tutea con voseo.
 - **Cuidada y precisa:** frases cortas, sin exageraciones. Valora el detalle, los materiales nobles y lo hecho a mano.
 - **Diseño + oficio:** equilibrio entre lo bello y lo útil. Cada pieza tiene un propósito funcional.
-- Frases de referencia: “Cerámica para espacios y momentos extraordinarios”, “No fabricamos objetos: diseñamos presencia, coherencia y emoción en lo cotidiano”, “Una experiencia que no se queda en la foto. Se la llevan a casa”.
+- Frases de referencia: “Cerámica para espacios y momentos extraordinarios”, “No fabricamos objetos: diseñamos presencia, coherencia y emoción en lo cotidiano”.
 - Evitar: lenguaje publicitario genérico, promesas que no se pueden verificar, precios o plazos no confirmados.
 
 ## Identidad visual
@@ -37,10 +37,9 @@ Tomada de los textos del sitio:
 
 | Eje | Peso | Enfoque |
 | --- | ---: | --- |
-| Proyectos y clientes | 40 % | Vajilla en uso en restaurantes y cafés (Merope, JYGLO, Goat x Coffee…), diseño de producto a medida. Solo con fotos y autorización del cliente. |
-| Oficio y proceso | 30 % | Torno, esmaltes, horneado, decisiones de diseño. Muestra el “hecho a mano”. |
-| Talleres y experiencias | 20 % | Talleres privados, eventos, cumpleaños, team building. Lleva a /eventosprivados. |
-| Piezas y tienda | 10 % | Piezas disponibles y novedades. Lleva a la tienda. |
+| Proyectos y clientes | 45 % | Vajilla en uso en restaurantes y cafés (Merope, JYGLO, Goat x Coffee…), diseño de producto a medida. Solo con fotos y autorización del cliente. |
+| Oficio y proceso | 35 % | Torno, esmaltes, horneado, decisiones de diseño. Muestra el “hecho a mano”. |
+| Piezas y tienda | 20 % | Piezas disponibles y novedades. Lleva a la tienda. |
 
 ## Frecuencia *(a validar)*
 

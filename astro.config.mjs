@@ -6,7 +6,7 @@ import tailwindcss from '@tailwindcss/vite';
 
 export default defineConfig({
   site: 'https://www.kanso.ar',
-  // Mantiene las URLs iguales a Wix (/servicios, /bio, /eventosprivados) sin barra final
+  // Mantiene las URLs iguales a Wix (/servicios, /bio) sin barra final
   trailingSlash: 'never',
   build: { format: 'file' },
   integrations: [

@@ -77,8 +77,8 @@ Reglas:
 - En Instagram los links del caption no se pueden tocar: el link etiquetado va en la bio o en el sticker de la story, y el caption dice “link en la bio”.
 - Al armar una tanda, cada pieza que lleve al sitio incluye su link etiquetado en `Dirección visual` (stories: en “link al post”/sticker).
 
-Ejemplo, sticker de la story `03S` que lleva a talleres privados:
-`https://www.kanso.ar/eventosprivados?utm_source=instagram&utm_medium=story&utm_campaign=03s`
+Ejemplo, sticker de la story `03S` que lleva a servicios:
+`https://www.kanso.ar/servicios?utm_source=instagram&utm_medium=story&utm_campaign=03s`
 
 ## Reglas
 
