@@ -32,6 +32,7 @@ Aplica al sitio público (`src/pages`, `src/components`, `src/styles`). El plani
 
 ## Excepciones aprobadas
 
+- **Portada de la home:** la foto lleva un oscurecido (`filter: brightness(.62)`) para que el titular blanco se lea. Es la única foto del sitio con filtro.
 - **Pie de página:** Instagram y «Volver arriba» van como botones circulares con ícono.
 
 ## Puntos de corte
