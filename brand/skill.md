@@ -27,11 +27,53 @@ Tomada de los textos del sitio:
 
 ## Identidad visual
 
-- Marrón KANSO `#9F7A60` (logo y acentos), fondo arena claro `#F2F3ED`, texto negro.
-- Tipografías del sitio: Poppins (títulos y texto), Montserrat espaciada en mayúsculas (etiquetas) y Bodoni Moda itálica para palabras destacadas.
+La identidad está cargada en el [Brand Kit KANSO de Canva](https://www.canva.com/brand/kAF4w6Dm7XY) (ID `kAF4w6Dm7XY`), que es la referencia para las piezas de redes. El sitio usa los mismos criterios con algunas diferencias, anotadas abajo.
+
+### Colores
+
+Paleta del Brand Kit de Canva:
+
+| Color | Hex | Uso |
+| --- | --- | --- |
+| Marrón KANSO | `#9F7961` | Logo y acentos. En el sitio figura como `#9F7A60` (misma tonalidad). |
+| Arena rosada | `#D3BDB2` | Fondos y acentos suaves. |
+| Arena | `#E5E1D8` | Fondos. |
+| Blanco cálido | `#F2EDEA` | Fondos. |
+| Blanco hueso | `#F1F1EF` | Fondos. |
+| Gris claro | `#EDEDED` | Fondos y separadores. |
+| Gris medio | `#B4B4B4` | Texto secundario y líneas. |
+| Gris oscuro | `#565656` | Texto secundario. |
+| Negro | `#000000` | Texto. |
+
+Colores que hoy solo usa el sitio ([`../src/styles/global.css`](../src/styles/global.css)): fondo arena `#F2F3ED`, marrón oscuro `#6B4A35` (hover de botones), gris `#6E6E6E`, líneas `#E3E1DA` y texto `#111`. *(A validar: unificar con la paleta de Canva.)*
+
+### Tipografías
+
+- **Poppins** es la tipografía del Brand Kit para todos los estilos (título, subtítulo, encabezados, cuerpo, cita y epígrafe). El kit tiene además 3 fuentes subidas.
+- El sitio suma **Montserrat** espaciada en mayúsculas (etiquetas y botones) y **Bodoni Moda** itálica para palabras destacadas. *(A validar: sumarlas al Brand Kit o dejarlas solo para la web.)*
+
+### Logos
+
+Versiones en el Brand Kit de Canva:
+
+- Logo horizontal: isotipo + KANSO.
+- Logo vertical: isotipo arriba, KANSO abajo.
+- Isotipo + KANSO.AR.
+- Isotipo blanco sobre marrón.
+- Isotipo negro.
+
+En el repo están el logo, el isotipo y el wordmark: [`assets/`](assets/).
+
+### Fotografía y piezas
+
 - Fotografía: luz natural, sombras suaves y las piezas en uso (mesas, gastronomía, manos trabajando).
-- Logo, isotipo y wordmark aprobados: [`assets/`](assets/).
 - Las piezas finales se arman en los Brand Templates de Canva de [`canva_templates.md`](canva_templates.md).
+
+### Pendiente en el Brand Kit
+
+- La sección **Guidelines** está vacía.
+- No hay **Brand Templates**.
+- La voz cargada está en inglés y con un error (*"profesional, warm and closely"*). Propuesta: "Profesional, cálida y cercana", en línea con la sección [Voz](#voz).
 
 ## Ejes editoriales *(a validar)*
 
