@@ -13,11 +13,12 @@ import G from '../assets/logos/cliente-g.svg';
 import Merope from '../assets/logos/cliente-merope.svg';
 import S from '../assets/logos/cliente-s.svg';
 
+// La foto horizontal va primero, a todo el ancho (16:9); las verticales, debajo (4:5).
 const galeria = [
+  { src: g4, ancho: true, cliente: '@jyglobar', url: 'https://www.instagram.com/jyglobar/', alt: 'Platos de cerámica KANSO apilados en barra' },
   { src: g1, cliente: '@jyglobar', url: 'https://www.instagram.com/jyglobar/', alt: 'Postre servido en plato de cerámica KANSO' },
   { src: g2, cliente: '@merope.ba', url: 'https://www.instagram.com/merope.ba/', alt: 'Plato de cerámica KANSO con comida en Merope' },
   { src: g3, cliente: '@goatxcoffee', url: 'https://www.instagram.com/goatx.coffee/', alt: 'Brunch y café en vajilla KANSO' },
-  { src: g4, cliente: '@jyglobar', url: 'https://www.instagram.com/jyglobar/', alt: 'Platos de cerámica KANSO apilados en barra' },
 ];
 const clientes = [Jyglo, Mxd, G, Merope, S];
 ---
@@ -27,15 +28,14 @@ const clientes = [Jyglo, Mxd, G, Merope, S];
     <div class="hero__content">
       <p class="label hero__label">KANSO Studio</p>
       <h1>Cerámica para espacios y momentos <em>extraordinarios</em></h1>
-      <p>Hacemos objetos hechos 100% a mano con materiales nobles y atención al detalle.<br />
-      Creamos experiencias únicas y personalizadas, haciendo tu idea realidad.</p>
+      <p>Hacemos objetos hechos 100% a mano con materiales nobles y atención al detalle. Creamos experiencias únicas y personalizadas, haciendo tu idea realidad.</p>
       <a class="btn btn--light" href={site.whatsappAR} target="_blank" rel="noopener">Hablemos de tu idea</a>
     </div>
   </section>
 
-  <section class="section container grid-2">
-    <h2 class="h-intro">El arte presente en todos los aspectos de tu negocio</h2>
-    <div>
+  <section class="section container grid-12 intro">
+    <h2 class="intro__titulo">El arte presente en todos los aspectos de tu negocio</h2>
+    <div class="intro__servicios">
       <div class="servicio">
         <p class="label">Diseño de vajilla para gastronomía</p>
         <p>Trabajamos la cerámica enfocándonos en el diseño y su propósito funcional, con el fin de optimizar su uso y enriquecer la imagen estética de cualquier negocio gastronómico.</p>
@@ -56,9 +56,9 @@ const clientes = [Jyglo, Mxd, G, Merope, S];
     </div>
   </section>
 
-  <section class="section container grid-2">
-    <div>
-      <h2 class="h-intro">Interpretamos tu esencia en cada pieza</h2>
+  <section class="section container grid-12 esencia">
+    <div class="esencia__texto">
+      <h2>Interpretamos tu esencia en cada pieza</h2>
       <p>Cada objeto surge del diálogo entre tus ideas y nuestro oficio. Escuchamos la historia detrás de cada proyecto para transformarla en forma, textura y color.</p>
       <p>Así, cada pieza conserva la calidez de lo hecho a mano y refleja la identidad de quien la habita o la presenta.</p>
       <p>No fabricamos objetos: diseñamos presencia, coherencia y emoción en lo cotidiano.</p>
@@ -66,8 +66,8 @@ const clientes = [Jyglo, Mxd, G, Merope, S];
     </div>
     <div class="galeria">
       {galeria.map((g) => (
-        <a href={g.url} target="_blank" rel="noopener" class="galeria__item">
-          <Image src={g.src} alt={g.alt} width={524} height={680} widths={[262, 524]} sizes="(max-width: 800px) 45vw, 260px" />
+        <a href={g.url} target="_blank" rel="noopener" class:list={['galeria__item', { 'galeria__item--ancho': g.ancho }]}>
+          <Image src={g.src} alt={g.alt} widths={g.ancho ? [720, 1280] : [320, 640]} sizes={g.ancho ? '(max-width: 799px) 100vw, 640px' : '(max-width: 799px) 33vw, 210px'} />
           <span>{g.cliente}</span>
         </a>
       ))}
@@ -80,21 +80,41 @@ const clientes = [Jyglo, Mxd, G, Merope, S];
 </Base>
 
 <style>
-  .hero { position: relative; margin: 0 var(--pad); min-height: min(78vh, 720px); display: grid; place-items: center; overflow: hidden; color: #fff; }
+  /* Hero: foto a todo el ancho con el titular alineado a la izquierda.
+     El oscurecido de la foto es una excepción a la regla de filtros (a confirmar), para que el texto se lea. */
+  .hero { position: relative; margin: 0 var(--pad); min-height: min(80vh, 720px); display: grid; place-items: center start; overflow: hidden; color: var(--c-white); }
   .hero__img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: 62% 48%; filter: brightness(.62); }
-  .hero__content { position: relative; text-align: center; padding: 60px 24px; max-width: 760px; }
-  .hero__label { color: rgba(255,255,255,.85); }
-  .hero h1 { font-size: clamp(28px, 4.2vw, 48px); font-weight: 400; margin-bottom: .5em; }
-  .hero h1 em { display: block; font-family: var(--f-serif); font-style: italic; font-weight: 700; font-size: 1.45em; line-height: 1.05; }
-  .hero p { font-size: 13px; margin-bottom: 2.4em; }
-  .h-intro { font-size: 22px; max-width: 22ch; }
-  .servicio { margin-bottom: 2.4rem; font-size: 13px; }
+  .hero__content { position: relative; padding: var(--s-8) var(--s-3); max-width: 720px; }
+  .hero__label { color: var(--c-beige); }
+  .hero h1 { font-size: var(--fs-h2); line-height: var(--lh-h2); }
+  .hero h1 em { display: block; font-family: var(--f-serif); font-style: italic; font-weight: var(--fw-serif); font-size: var(--fs-display); line-height: var(--lh-display); }
+  .hero__content p:not(.label) { margin: 0 0 var(--s-6); }
+
+  .intro .servicio + .servicio { margin-top: var(--s-6); }
+  .intro .servicio p:not(.label) { margin-bottom: var(--s-1); }
+
   .destacado { text-align: center; }
-  .destacado__txt { font-size: clamp(17px, 2vw, 22px); font-weight: 500; max-width: 34ch; margin: 0 auto; }
-  .galeria { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
-  .galeria__item { position: relative; display: block; overflow: hidden; }
-  .galeria__item img { width: 100%; aspect-ratio: 524 / 680; object-fit: cover; transition: transform .5s; }
-  .galeria__item:hover img { transform: scale(1.04); }
-  .galeria__item span { position: absolute; right: 10px; bottom: 10px; background: rgba(0,0,0,.45); color: #fff; font-size: 10px; padding: 6px 12px; }
-  .clientes { display: flex; justify-content: space-around; align-items: center; flex-wrap: wrap; gap: 32px; padding-block: 48px 72px; }
+  .destacado__txt { font-size: var(--fs-lead); font-weight: var(--fw-medium); max-width: 34ch; margin: 0 auto; }
+
+  .esencia { align-items: center; }
+  .galeria { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: var(--s-2) var(--s-1); }
+  .galeria__item { display: block; text-decoration: none; }
+  .galeria__item--ancho { grid-column: 1 / -1; }
+  .galeria__item img { width: 100%; aspect-ratio: 4 / 5; object-fit: cover; }
+  .galeria__item--ancho img { aspect-ratio: 16 / 9; }
+  .galeria__item span { display: block; margin-top: var(--s-1); font-size: var(--fs-label); color: var(--c-muted); }
+  .galeria__item:hover span { color: var(--c-accent); }
+
+  .clientes { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: var(--s-4); padding-block: 0 var(--section); }
+
+  @media (min-width: 800px) {
+    .intro__titulo { grid-column: 1 / 6; }
+    .intro__servicios { grid-column: 7 / 13; }
+
+    .hero__content { padding-inline: var(--s-8); }
+
+    .galeria { grid-column: 1 / 8; grid-row: 1; gap: var(--s-3) var(--s-2); }
+    .esencia__texto { grid-column: 9 / 13; grid-row: 1; }
+    .galeria__item span { font-size: var(--fs-small); }
+  }
 </style>

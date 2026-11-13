@@ -1,0 +1,70 @@
+/*
+  Design tokens de KANSO Studio: única fuente de colores, tipografías,
+  escala y espaciados del sitio. Reglas de uso: brand/web-system.md
+*/
+:root {
+  /* Colores */
+  --c-accent: #9f7a60;
+  --c-accent-dark: #6b4a35;
+  --c-text: #111;
+  --c-muted: #6e6e6e;
+  --c-beige: #f2f3ed;
+  --c-line: #e3e1da;
+  --c-white: #fff;
+
+  /* Tipografías y grosores */
+  --f-sans: 'Poppins', system-ui, sans-serif;
+  --f-label: 'Montserrat', system-ui, sans-serif;
+  --f-serif: 'Bodoni Moda', Georgia, serif;
+  --fw-regular: 400;
+  --fw-medium: 500;
+  --fw-serif: 700;
+
+  /* Escala tipográfica */
+  --fs-display: clamp(2.5rem, 5vw, 4.5rem);
+  --fs-h2: clamp(1.5rem, 2.6vw, 2.25rem);
+  --fs-h3: clamp(1.5rem, 2.2vw, 1.875rem); /* títulos de ítems, ej. servicios (24–30 px) */
+  --fs-lead: clamp(1.0625rem, 2vw, 1.375rem); /* frases destacadas (17–22 px) */
+  --fs-body: clamp(1rem, 0.95rem + 0.25vw, 1.125rem);
+  --fs-small: 0.875rem;
+  --fs-label: 0.6875rem;
+  --lh-display: 1.1;
+  --lh-h2: 1.2;
+  --lh-body: 1.65;
+  --tracking-label: 0.22em;
+  --tracking-title: 0.12em;
+  --measure: 55ch;
+
+  /* Espaciado: grilla de 8 px */
+  --s-1: 8px;
+  --s-2: 16px;
+  --s-3: 24px;
+  --s-4: 32px;
+  --s-6: 48px;
+  --s-8: 64px;
+  --s-12: 96px;
+  --s-16: 128px;
+  --s-20: 160px;
+
+  /* Layout (mobile) */
+  --max: 1168px;
+  --pad: var(--s-3);
+  --gutter: var(--s-2);
+  --section: 72px;
+}
+
+@media (min-width: 800px) {
+  :root {
+    --pad: var(--s-6);
+    --gutter: var(--s-3);
+    --section: var(--s-16);
+  }
+}
+
+@media (min-width: 1200px) {
+  :root {
+    --pad: var(--s-8);
+    --gutter: var(--s-4);
+    --section: var(--s-20);
+  }
+}

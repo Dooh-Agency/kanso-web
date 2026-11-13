@@ -2,77 +2,88 @@
 @import '@fontsource/poppins/500.css';
 @import '@fontsource/montserrat/400.css';
 @import '@fontsource/bodoni-moda/700-italic.css';
+@import './tokens.css';
 
-:root {
-  --c-accent: #9f7a60;
-  --c-accent-dark: #6b4a35;
-  --c-text: #111;
-  --c-muted: #6e6e6e;
-  --c-beige: #f2f3ed;
-  --c-line: #e3e1da;
-  --f-sans: 'Poppins', system-ui, sans-serif;
-  --f-label: 'Montserrat', system-ui, sans-serif;
-  --f-serif: 'Bodoni Moda', Georgia, serif;
-  --max: 1160px;
-  --pad: clamp(20px, 5vw, 60px);
-}
+/* Estilos comunes. Reglas: brand/web-system.md · Valores: tokens.css */
 
 *, *::before, *::after { box-sizing: border-box; }
 html { scroll-behavior: smooth; }
 body {
   margin: 0;
   font-family: var(--f-sans);
+  font-size: var(--fs-body);
+  line-height: var(--lh-body);
   color: var(--c-text);
-  background: #fff;
-  font-size: 15px;
-  line-height: 1.6;
+  background: var(--c-white);
   -webkit-font-smoothing: antialiased;
 }
 img { max-width: 100%; height: auto; display: block; }
 a { color: inherit; }
-h1, h2, h3 { font-weight: 500; line-height: 1.25; margin: 0 0 .6em; }
-p { margin: 0 0 1em; }
 
+h1, h2, h3 { margin: 0 0 var(--s-3); }
+h1 { font-size: var(--fs-display); line-height: var(--lh-display); font-weight: var(--fw-regular); }
+h2 { font-size: var(--fs-h2); line-height: var(--lh-h2); font-weight: var(--fw-medium); }
+p { margin: 0 0 var(--s-2); max-width: var(--measure); }
+
+/* Layout */
 .container { max-width: var(--max); margin: 0 auto; padding-inline: var(--pad); }
-.section { padding-block: clamp(56px, 9vw, 110px); }
+.section { padding-block: var(--section); }
 .bg-beige { background: var(--c-beige); }
 
+/* Grilla editorial: una columna en mobile, 12 desde 800 px.
+   Cada sección define sus columnas con grid-column dentro de @media (min-width: 800px). */
+.grid-12 {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  column-gap: var(--gutter);
+  row-gap: var(--s-6);
+}
+@media (min-width: 800px) {
+  .grid-12 { grid-template-columns: repeat(12, minmax(0, 1fr)); }
+}
+
+/* Texto */
 .label {
   font-family: var(--f-label);
-  font-size: 11px;
-  letter-spacing: .22em;
+  font-size: var(--fs-label);
+  line-height: var(--lh-body);
+  letter-spacing: var(--tracking-label);
   text-transform: uppercase;
   color: var(--c-muted);
-  margin-bottom: 1rem;
+  margin: 0 0 var(--s-2);
+  max-width: none;
 }
-.link-accent { color: var(--c-accent); text-decoration: none; font-size: 13px; }
-.link-accent:hover { text-decoration: underline; }
+
+/* Acciones: un .btn (primario) por vista; el resto, .link-accent */
+.link-accent {
+  color: var(--c-accent);
+  font-size: var(--fs-small);
+  text-decoration: none;
+  border-bottom: 1px solid currentColor;
+}
+.link-accent:hover { color: var(--c-accent-dark); }
 
 .btn {
   display: inline-block;
   font-family: var(--f-label);
-  font-size: 11px;
-  letter-spacing: .18em;
+  font-size: var(--fs-label);
+  letter-spacing: var(--tracking-label);
   text-transform: uppercase;
   text-decoration: none;
-  padding: 14px 32px;
-  border: 1px solid currentColor;
-  transition: background .2s, color .2s;
+  padding: var(--s-2) var(--s-4);
+  background: var(--c-text);
+  color: var(--c-white);
+  border: 1px solid var(--c-text);
+  transition: background .2s, border-color .2s, color .2s;
 }
-.btn:hover { background: var(--c-text); color: #fff; }
-.btn--light { color: #fff; }
-.btn--light:hover { background: #fff; color: var(--c-text); }
+.btn:hover { background: var(--c-accent-dark); border-color: var(--c-accent-dark); }
+.btn--light { background: var(--c-white); color: var(--c-text); border-color: var(--c-white); }
+.btn--light:hover { background: var(--c-beige); border-color: var(--c-beige); color: var(--c-text); }
 
-.page-title {
-  background: var(--c-beige);
-  text-align: center;
-  padding: 56px 20px;
-  margin: 0 var(--pad);
-}
-.page-title h1 { font-size: 18px; letter-spacing: .12em; text-transform: uppercase; margin: 0; }
-.page-title .label { margin-bottom: .4rem; }
-
-.grid-2 { display: grid; gap: clamp(32px, 6vw, 80px); grid-template-columns: 1fr 1fr; align-items: start; }
-@media (max-width: 800px) { .grid-2 { grid-template-columns: 1fr; } }
+/* Encabezado de páginas internas: banda beige con título chico, centrado y en mayúsculas */
+.page-title { margin: 0 var(--pad); padding: var(--s-8) var(--s-3); text-align: center; }
+.page-title h1 { font-size: var(--fs-body); line-height: var(--lh-body); letter-spacing: var(--tracking-title); text-transform: uppercase; margin: 0; }
+.page-title .label { margin: 0 0 var(--s-1); }
+.page-title h1 + .label { margin: var(--s-1) 0 0; }
 
 .sr-only { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); }

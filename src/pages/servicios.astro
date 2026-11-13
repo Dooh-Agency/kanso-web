@@ -30,27 +30,27 @@ const servicios = [
 ];
 ---
 <Base title="Servicios" description="Diseño a medida, vajilla para gastronomía y producción de cerámica por pedido para proyectos, negocios y marcas." ogImage={og}>
-  <header class="page-title">
+  <header class="page-title servicios-title bg-beige">
     <h1>Servicios</h1>
-    <p class="label" style="margin:.5rem 0 0">Agregamos valor a proyectos, negocios y marcas</p>
+    <p class="label">Agregamos valor a proyectos, negocios y marcas</p>
   </header>
 
-  <section class="container destacado-wrap">
-    <Image src={hero} alt="Jarro de cerámica KANSO servido con pan" widths={[700, 1100]} sizes="(max-width: 800px) 100vw, 760px" class="destacado-img" />
-    <div class="destacado-card">
+  <section class="container grid-12 destacado">
+    <Image src={hero} alt="Jarro de cerámica KANSO servido con pan" widths={[480, 720, 1080]} sizes="(max-width: 799px) 100vw, 560px" class="destacado__img" />
+    <div class="destacado__card">
       <p class="label">Diseño a medida</p>
       <h2>Tu idea hecha realidad</h2>
-      <p>Agregamos valor a proyectos, negocios y marcas</p>
-      <a href={site.whatsappAR} target="_blank" rel="noopener">Consultanos, ¡podemos asesorarte!</a>
+      <p>Agregamos valor a proyectos, negocios y marcas.</p>
+      <a class="btn btn--light" href={site.whatsappAR} target="_blank" rel="noopener">Consultanos, ¡podemos asesorarte!</a>
     </div>
   </section>
 
-  <section class="section container">
+  <section class="container servicios">
     {servicios.map((s) => (
-      <article class="servicio">
-        <Image src={s.img} alt={s.alt} width={360} height={260} widths={[360, 720]} sizes="(max-width: 800px) 100vw, 220px" />
-        <h2>{s.titulo}</h2>
-        <div>
+      <article class="servicio grid-12">
+        <Image src={s.img} alt={s.alt} widths={[320, 640]} sizes="(max-width: 799px) 100vw, 280px" class="servicio__img" />
+        <div class="servicio__texto">
+          <h2>{s.titulo}</h2>
           <p class="servicio__bajada">{s.bajada}</p>
           <p>{s.texto}</p>
         </div>
@@ -60,23 +60,34 @@ const servicios = [
 </Base>
 
 <style>
-  .destacado-wrap { position: relative; margin-top: 48px; }
-  .destacado-img { width: min(760px, 100%); aspect-ratio: 760 / 520; object-fit: cover; }
-  .destacado-card {
-    background: #6b4a35; color: #fff; padding: 40px; max-width: 400px;
-    position: absolute; right: var(--pad); top: 50%; transform: translateY(-20%);
-  }
-  .destacado-card .label { color: rgba(255,255,255,.75); }
-  .destacado-card h2 { font-size: 20px; }
-  .destacado-card p { font-size: 13px; }
-  .destacado-card a { color: #fff; font-size: 12px; }
-  .servicio { display: grid; grid-template-columns: 220px 1fr 1.4fr; gap: 40px; align-items: start; padding-block: 40px; border-top: 1px solid var(--c-line); font-size: 13px; }
+  /* La banda del título se alarga y la foto con la tarjeta arranca dentro de ella:
+     título y destacado se leen como un solo bloque. */
+  .servicios-title { padding-bottom: calc(var(--s-8) + var(--s-12)); }
+  .destacado { position: relative; margin-top: calc(-1 * var(--s-12)); padding-bottom: var(--section); }
+
+  /* Foto 4:5 con la tarjeta superpuesta, desplazada a la derecha */
+  .destacado { row-gap: 0; }
+  .destacado__img { width: 100%; aspect-ratio: 4 / 5; object-fit: cover; }
+  .destacado__card { background: var(--c-accent-dark); color: var(--c-white); padding: var(--s-6) var(--s-4); }
+  .destacado__card .label { color: var(--c-beige); }
+  .destacado__card p:not(.label) { margin-bottom: var(--s-4); }
+
+  .servicios { padding-bottom: var(--section); }
+  .servicio { padding-block: var(--s-6); border-top: 1px solid var(--c-line); row-gap: var(--s-3); }
   .servicio:last-child { border-bottom: 1px solid var(--c-line); }
-  .servicio img { width: 100%; aspect-ratio: 220 / 160; object-fit: cover; }
-  .servicio h2 { font-size: 20px; max-width: 14ch; }
-  .servicio__bajada { font-weight: 500; }
-  @media (max-width: 800px) {
-    .destacado-card { position: static; transform: none; max-width: none; }
-    .servicio { grid-template-columns: 1fr; gap: 16px; }
+  .servicio__img { width: 100%; aspect-ratio: 4 / 5; object-fit: cover; }
+  /* Ancho acotado para que todos los títulos queden en dos líneas parejas */
+  .servicio__texto h2 { font-size: var(--fs-h3); text-wrap: balance; max-width: 24ch; }
+  .servicio__bajada { font-weight: var(--fw-medium); }
+
+  @media (min-width: 800px) {
+    .servicios-title { padding-bottom: calc(var(--s-8) + var(--s-16)); }
+    .destacado { margin-top: calc(-1 * var(--s-16)); }
+    .destacado__img { grid-column: 1 / 7; grid-row: 1; }
+    .destacado__card { grid-column: 6 / 12; grid-row: 1; align-self: center; padding: var(--s-8) var(--s-6); }
+
+    .servicio { padding-block: var(--s-8); align-items: center; }
+    .servicio__img { grid-column: 1 / 4; }
+    .servicio__texto { grid-column: 5 / 12; }
   }
 </style>

@@ -6,22 +6,22 @@ import foto1 from '../assets/img/bio-2.jpg';
 import foto2 from '../assets/img/bio-3.jpg';
 ---
 <Base title="Bio" description="Florencia Álvarez y María Fernanda Barreiro Prieto, diseñadoras gráficas detrás de KANSO Studio: diseño y cerámica en equilibrio entre lo bello y lo útil.">
-  <header class="page-title">
+  <header class="page-title bg-beige">
     <p class="label">Nuestra historia</p>
     <h1>Bio</h1>
   </header>
 
-  <section class="section container grid-2">
+  <section class="section container grid-12 bio">
     <div class="bio__aside">
       <p class="bio__script" aria-hidden="true">diseño<br />y cerámica</p>
-      <p class="bio__claim">Equilibrio<br />entre lo bello<br />y lo útil.</p>
+      <p class="bio__claim">Equilibrio<br />entre lo <em>bello</em><br />y lo <em>útil</em>.</p>
       <div class="bio__fotos">
-        <Image src={foto1} alt="Pieza de cerámica KANSO en el torno" width={400} height={533} widths={[300, 600]} sizes="(max-width: 800px) 45vw, 260px" />
-        <Image src={foto2} alt="Detalle de piezas KANSO" width={400} height={533} widths={[300, 600]} sizes="(max-width: 800px) 45vw, 260px" />
+        <Image src={foto1} alt="Pieza de cerámica KANSO en el torno" widths={[320, 640]} sizes="(max-width: 799px) 50vw, 240px" />
+        <Image src={foto2} alt="Detalle de piezas KANSO" widths={[320, 640]} sizes="(max-width: 799px) 50vw, 240px" />
       </div>
     </div>
     <div class="bio__texto">
-      <Image src={isotipo} alt="" width={56} height={54} class="bio__iso" />
+      <Image src={isotipo} alt="" width={48} height={46} class="bio__iso" />
       <h2>Logramos integrar la pasión por el diseño y el amor por la cerámica para hacer objetos adorables</h2>
       <p>Florencia Álvarez, Diseñadora Gráfica de la Universidad de Buenos Aires y mentora del proyecto, se enamoró de la cerámica desde muy pequeña y se formó en distintos cursos, talleres e investigando de forma autodidacta y experimental.</p>
       <p>Con el tiempo, se desarrolló en su profesión en el ámbito corporativo y digital, mientras se especializaba en la alfarería con su torno alfarero. Fue en ese momento que se encontró con una forma de expresión única, que le permitió fusionar sus estudios universitarios con su pasión —y hobby hasta ese entonces— por la cerámica.</p>
@@ -32,11 +32,17 @@ import foto2 from '../assets/img/bio-3.jpg';
 </Base>
 
 <style>
-  .bio__script { font-family: var(--f-serif); font-style: italic; font-weight: 700; font-size: clamp(44px, 6vw, 72px); line-height: .95; color: #ece8e2; margin: 0 0 24px; text-align: right; }
-  .bio__claim { font-size: clamp(30px, 3.6vw, 44px); line-height: 1.1; font-weight: 400; }
-  .bio__fotos { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-top: 32px; }
-  .bio__fotos img { width: 100%; aspect-ratio: 3 / 4; object-fit: cover; }
-  .bio__texto { font-size: 13px; }
-  .bio__texto h2 { font-size: 20px; }
-  .bio__iso { width: 44px; margin-bottom: 20px; }
+  .bio__script { font-family: var(--f-serif); font-style: italic; font-weight: var(--fw-serif); font-size: var(--fs-display); line-height: var(--lh-display); color: var(--c-line); margin: 0 0 calc(-1 * var(--s-6)); text-align: right; max-width: none; }
+  /* El claim se monta sobre «y cerámica», que queda como fondo */
+  .bio__claim { position: relative; font-size: var(--fs-h2); line-height: var(--lh-h2); }
+  .bio__claim em { font-family: var(--f-serif); font-style: italic; font-weight: var(--fw-serif); }
+  .bio__fotos { display: grid; grid-template-columns: 1fr 1fr; gap: var(--s-2); margin-top: var(--s-4); }
+  .bio__fotos img { width: 100%; aspect-ratio: 4 / 5; object-fit: cover; }
+  .bio__texto h2 { font-size: var(--fs-h3); text-wrap: balance; }
+  .bio__iso { width: 48px; height: auto; margin-bottom: var(--s-3); }
+
+  @media (min-width: 800px) {
+    .bio__aside { grid-column: 1 / 6; }
+    .bio__texto { grid-column: 7 / 13; }
+  }
 </style>

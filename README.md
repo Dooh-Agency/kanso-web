@@ -10,7 +10,8 @@ src/
   pages/              ← una página por archivo: index, servicios, bio
   components/         ← Header, Footer, botón de WhatsApp
   layouts/Base.astro  ← <head>, SEO, Open Graph
-  styles/global.css   ← colores, tipografías, estilos comunes
+  styles/tokens.css   ← colores, tipografías, escala y espaciados
+  styles/global.css   ← estilos comunes (reglas: brand/web-system.md)
   assets/img/         ← fotos (Astro las optimiza a WebP al compilar)
   assets/logos/       ← logo, isotipo y logos de clientes (SVG)
   components/planner/ ← panel del planificador de redes (React + Tailwind)
