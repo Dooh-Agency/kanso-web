@@ -42,6 +42,8 @@ Una sola vez, en la cuenta de Cloudflare de KANSO (todo en plan gratuito):
 3. **Conectarlos al proyecto de Pages** `kanso-web`: Settings → Bindings → D1 `PLANNER_DB` = `kanso-planner` y R2 `PLANNER_BUCKET` = `kanso-planner-assets` (Production y Preview).
 4. **Cloudflare Access:** Zero Trust (plan Free) → Access → Applications → Add → Self-hosted, nombre “Planificador de redes”, con las rutas `kanso-web-uze.pages.dev/planificador-redes` y `kanso-web-uze.pages.dev/api/planner`. Política “Equipo KANSO”: Allow, Emails = las personas que aprueban. Método de ingreso: código por mail (One-time PIN). Al mudar el dominio, sumar `www.kanso.ar/planificador-redes` y `www.kanso.ar/api/planner`.
 
+Estado actual (cuenta `hello@dooh.com.ar`): D1 `kanso-planner` y R2 `kanso-planner-assets` creados y conectados a `kanso-web`; dominio `kanso.ar` en Cloudflare (redirige a `www.kanso.ar`, HTTPS obligatorio); aplicación de Access **“Planificador de redes KANSO”** (protege `/planificador-redes` y `/api/planner` en `www.kanso.ar` y en `kanso-web-uze.pages.dev`) con la política **“Equipo KANSO”** (`florencia@`, `fernanda@` y `hello@dooh.com.ar`). El equipo de Zero Trust es el mismo que usa DOOH: `broad-waterfall-7727.cloudflareaccess.com`.
+
 En **Workers & Pages → kanso-web → Settings → Variables and secrets** (Production) cargar:
 
 | Nombre | Tipo | Valor |
@@ -70,7 +72,7 @@ La función `/api/planner/instagram` (protegida por Access) guarda la respuesta 
 2. Reemplazar el contenido por [`Code.gs`](Code.gs), guardar el proyecto y recargar la planilla.
 3. En **Project Settings → Script properties**, agregar:
 
-   - `PLANNER_API_URL` → `https://kanso-web-uze.pages.dev` (o `https://www.kanso.ar` cuando se mude el dominio).
+   - `PLANNER_API_URL` → `https://www.kanso.ar` (el dominio ya está en Cloudflare; `https://kanso-web-uze.pages.dev` también funciona).
    - `PLANNER_SYNC_SECRET` → la misma clave cargada en Cloudflare. Nunca copiarla en el sitio, en `.env.local`, en Git ni en un mensaje de chat.
 
    Si quedaron `SUPABASE_URL` y `SUPABASE_SERVICE_ROLE_KEY` de la versión anterior, borrarlas.
