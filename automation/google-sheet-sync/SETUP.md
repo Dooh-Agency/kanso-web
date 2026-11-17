@@ -57,12 +57,23 @@ Las variables se aplican en el siguiente despliegue.
 
 ### Posts publicados de Instagram (opcional)
 
-El feed del planificador puede completarse con los últimos 12 posts de `@kanso.ar`, debajo de las piezas planificadas, como se ven en el perfil. Usa la API de Instagram **solo con permiso de lectura** (`instagram_business_basic`): no puede publicar ni comentar. Sin el token, el feed muestra solo la grilla. Requiere que `@kanso.ar` sea una cuenta profesional (empresa o creador).
+El feed del planificador puede completarse con los últimos 12 posts de `@kanso.ar`, debajo de las piezas planificadas, como se ven en el perfil. Usa un token de usuario del sistema de Meta **solo con permisos de lectura**: no puede publicar, comentar ni leer mensajes. Sin el token, el feed muestra solo la grilla. Requiere que `@kanso.ar` sea una cuenta profesional vinculada a la página de Facebook de KANSO.
 
-1. En [developers.facebook.com](https://developers.facebook.com) crear una app (tipo Empresa) con el caso de uso **API de Instagram** y sumar `@kanso.ar` como evaluadora de Instagram.
-2. **Inicio de sesión con Facebook para empresas → Configuraciones → Crear configuración:** token de usuario del sistema que no caduca, activo **Cuentas de Instagram** y solo el permiso de lectura básica. No usar la plantilla: pide permisos de publicación, mensajes y anuncios.
-3. **Casos de uso → API de Instagram → Personalizar:** elegir esa configuración y tocar **Generar token** junto a `kanso.ar`.
-4. En Cloudflare (variables de `kanso-web`, Production) guardar el secreto `INSTAGRAM_ACCESS_TOKEN` y, como texto, `INSTAGRAM_ACCOUNT_ID` con el ID de la cuenta de Instagram que muestra Meta. Volver a desplegar.
+Estado actual: conectado desde noviembre de 2026, con la app de Meta **KANSO-Planificador-Redes** (portfolio `kanso.ar`) y el usuario del sistema **Planificador-redes-kanso**. El token no vence.
+
+Para volver a configurarlo (por ejemplo, si se revoca el token):
+
+1. **App:** en [developers.facebook.com](https://developers.facebook.com), una app del portfolio `kanso.ar` con el caso de uso **Administrar mensajes y contenido en Instagram**. El nombre exagera: los permisos se eligen al generar el token. No hace falta publicarla. En el caso de uso no tocar **Add required content/messaging permissions** ni crear configuraciones desde la plantilla: suman permisos de publicación, mensajes y anuncios que no se pueden quitar. El inicio de sesión con Instagram (token `IG`) ya no está disponible para apps nuevas.
+2. **Usuario del sistema:** en [business.facebook.com/settings](https://business.facebook.com/settings) (portfolio `kanso.ar`) → **Usuarios del sistema**, rol **Empleado**. En **Asignar activos** darle tres activos:
+   - **Páginas de Facebook → Kanso:** acceso parcial, solo **Contenido**.
+   - **Cuentas de Instagram → kanso.ar:** acceso parcial, solo **Contenido**. Es un activo aparte de la página: sin él, el token no llega a los posts.
+   - **Apps → KANSO-Planificador-Redes:** acceso parcial, **Desarrollar app**.
+
+   Si al generar el token aparece “No hay permisos disponibles”, la asignación de la app todavía no se aplicó: recargar la página y volver a intentar.
+3. **Token:** en el usuario del sistema → **Generar token** → la app, caducidad **Nunca** y exactamente estos tres permisos: `instagram_basic`, `pages_show_list` y `pages_read_engagement`. Antes de generarlo, revisar en el desplegable que estén los tres tildados: usar el buscador puede desmarcar alguno. Meta muestra el token una sola vez.
+4. **Cloudflare** (`kanso-web` → Settings → Variables and secrets → Production): `INSTAGRAM_ACCESS_TOKEN` como **Secret** e `INSTAGRAM_ACCOUNT_ID` como **Text** con el ID de la cuenta de Instagram (`17841456734993055`; figura en **Cuentas de Instagram** del portfolio). Después, en **Deployments**, **Retry deployment** del último despliegue de producción.
+
+Para comprobarlo, con sesión en el planificador, abrir `https://www.kanso.ar/api/planner/instagram`: si falla, `attempts` muestra el motivo y los permisos que tiene el token (nunca el token).
 
 La función `/api/planner/instagram` (protegida por Access) guarda la respuesta 3 horas en D1 (tabla `planner_settings`, que crea sola). También acepta un token de usuario de Instagram (empieza con `IG`, vence a los 60 días): en ese caso lo renueva cada 7 días. Si Instagram rechaza el token, el planificador lo avisa debajo del feed: generar uno nuevo y reemplazar el secreto. Los posts que ya figuran en la grilla con su `URL publicada` no se repiten.
 
