@@ -75,7 +75,7 @@ Para volver a configurarlo (por ejemplo, si se revoca el token):
 
 Para comprobarlo, con sesión en el planificador, abrir `https://www.kanso.ar/api/planner/instagram`: si falla, `attempts` muestra el motivo y los permisos que tiene el token (nunca el token).
 
-La función `/api/planner/instagram` (protegida por Access) guarda la respuesta 3 horas en D1 (tabla `planner_settings`, que crea sola). También acepta un token de usuario de Instagram (empieza con `IG`, vence a los 60 días): en ese caso lo renueva cada 7 días. Si Instagram rechaza el token, el planificador lo avisa debajo del feed: generar uno nuevo y reemplazar el secreto. Los posts que ya figuran en la grilla con su `URL publicada` no se repiten.
+La función `/api/planner/instagram` (protegida por Access) guarda la respuesta 3 horas en D1 (tabla `planner_settings`, que crea sola). También acepta un token de usuario de Instagram (empieza con `IG`, vence a los 60 días): en ese caso lo renueva cada 7 días. Si Instagram rechaza el token, el planificador lo avisa debajo del feed: generar uno nuevo y reemplazar el secreto. Los posts que ya figuran en la grilla no se repiten: los que tienen su `URL publicada` y también los que se emparejan con una pieza por el copy o el día de salida, aunque la sincronización todavía no haya cargado el link. Cargar la `URL publicada` en la grilla sigue dependiendo de la sincronización (manual o la horaria).
 
 ### En Apps Script
 
