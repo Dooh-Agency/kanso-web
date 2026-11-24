@@ -95,6 +95,8 @@ La función `/api/planner/instagram` (protegida por Access) guarda la respuesta 
 5. Volver a la grilla y ejecutar **Planificador KANSO → Sincronizar con el planificador**. Aceptar los permisos solicitados por Google.
 6. Activar **Planificador KANSO → Activar sincronización cada hora**.
 
+Google corta cada ejecución a los 30 minutos. La sincronización carga primero los links de Instagram, y si a los 25 minutos le quedan piezas, se detiene, lo avisa en el resumen (`Piezas pendientes`) y la próxima corrida sigue desde esa fila (propiedad `SYNC_NEXT_ROW`, que maneja sola). Dos corridas al mismo tiempo no se pisan: la segunda avisa y termina.
+
 Cuando se cambie `Code.gs`, actualizar la implementación existente (**Implementar → Gestionar implementaciones → Editar → Nueva versión**) para conservar la misma URL.
 
 ## Operación

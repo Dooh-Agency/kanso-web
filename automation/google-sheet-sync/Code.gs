@@ -7,7 +7,12 @@
  */
 
 // Versión actual: sincroniza con Cloudflare en lugar de Supabase.
-const PLANNER_SYNC_VERSION = '2026.11.11.1';
+const PLANNER_SYNC_VERSION = '2026.11.24.1';
+
+// Tiempo máximo de una corrida antes de dejar filas para la siguiente
+// (Google corta a los 30 minutos) y propiedad donde se guarda la fila siguiente.
+const SYNC_TIME_BUDGET_MS = 25 * 60 * 1000;
+const SYNC_CURSOR_PROPERTY = 'SYNC_NEXT_ROW';
 
 const PLANNER_CONFIG = {
   sheetName: 'Grilla semanal',
@@ -54,18 +59,52 @@ function syncPlanner() {
     }
   });
 
-  const folders = ensureAssetFolders_(sheet, headerIndex, rawRows);
-  const report = { createdOrUpdated: 0, assets: 0, uploads: 0, skipped: 0, removed: 0, links: 0, errors: folders.errors.slice() };
-  const sourceKeys = [];
+  // Evita que la corrida horaria y una manual se pisen.
+  const lock = LockService.getScriptLock();
+  if (!lock.tryLock(1000)) {
+    notify_('Ya hay una sincronización en curso. Probá de nuevo en unos minutos.');
+    return;
+  }
+  try {
+    syncGrid_(api, spreadsheet, sheet, headerIndex, rawRows);
+  } finally {
+    lock.releaseLock();
+  }
+}
 
+function syncGrid_(api, spreadsheet, sheet, headerIndex, rawRows) {
+  const startedAt = Date.now();
+  const folders = ensureAssetFolders_(sheet, headerIndex, rawRows);
+  const report = { createdOrUpdated: 0, assets: 0, uploads: 0, skipped: 0, removed: 0, links: 0, pending: 0, errors: folders.errors.slice() };
+
+  // Primero los links de Instagram: es un solo pedido y no tiene que depender
+  // de que la corrida llegue al final.
+  try {
+    report.links = writePublishedLinks_(api, spreadsheet, sheet, headerIndex);
+  } catch (error) {
+    report.errors.push(`Links de Instagram: ${error.message}`);
+  }
+
+  const rows = [];
   rawRows.forEach((row, offset) => {
-    const rowNumber = PLANNER_CONFIG.headerRow + 1 + offset;
     if (!value_(row, headerIndex, 'Pieza') || !value_(row, headerIndex, 'Tema')) {
       report.skipped += 1;
       return;
     }
-    const sourceKey = `${spreadsheet.getId()}:${sheet.getSheetId()}:${rowNumber}`;
-    sourceKeys.push(sourceKey);
+    const rowNumber = PLANNER_CONFIG.headerRow + 1 + offset;
+    rows.push({ row, rowNumber, sourceKey: `${spreadsheet.getId()}:${sheet.getSheetId()}:${rowNumber}` });
+  });
+  const sourceKeys = rows.map((entry) => entry.sourceKey);
+
+  // Google corta la ejecución a los 30 minutos. Si se acerca el límite, la
+  // corrida se detiene y la próxima sigue desde la fila donde quedó.
+  const properties = PropertiesService.getScriptProperties();
+  const savedStart = Number(properties.getProperty(SYNC_CURSOR_PROPERTY)) || 0;
+  const start = savedStart < rows.length ? savedStart : 0;
+  let index = start;
+  for (; index < rows.length; index += 1) {
+    if (Date.now() - startedAt > SYNC_TIME_BUDGET_MS) break;
+    const { row, rowNumber, sourceKey } = rows[index];
     try {
       const result = syncRow_(api, sourceKey, row, headerIndex, rowNumber);
       report.createdOrUpdated += 1;
@@ -74,13 +113,12 @@ function syncPlanner() {
     } catch (error) {
       report.errors.push(`Fila ${rowNumber}: ${error.message}`);
     }
-  });
-
-  // Carga en “URL publicada” el link de los posts que ya salieron en Instagram.
-  try {
-    report.links = writePublishedLinks_(api, spreadsheet, sheet, headerIndex);
-  } catch (error) {
-    report.errors.push(`Links de Instagram: ${error.message}`);
+  }
+  if (index < rows.length) {
+    properties.setProperty(SYNC_CURSOR_PROPERTY, String(index));
+    report.pending = rows.length - index;
+  } else {
+    properties.deleteProperty(SYNC_CURSOR_PROPERTY);
   }
 
   // Quita del planificador las filas que ya no existen en la grilla.
@@ -100,6 +138,9 @@ function syncPlanner() {
     `Piezas quitadas del planificador: ${report.removed}`,
     `Filas sin pieza o tema: ${report.skipped}`,
   ];
+  if (report.pending) {
+    message.push(`Piezas pendientes: ${report.pending} (se acercó el límite de tiempo; la próxima sincronización sigue desde ahí)`);
+  }
   if (report.errors.length) {
     message.push('', `Errores (${report.errors.length}):`, report.errors.slice(0, 8).join('\n'));
   }
